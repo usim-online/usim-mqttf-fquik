@@ -2,6 +2,11 @@
 *.apk
 *.ap_
 
+# VitePress
+docs/node_modules/
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+
 # Files for the ART/Dalvik VM
 *.dex
 
