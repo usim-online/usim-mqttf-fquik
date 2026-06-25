@@ -2,7 +2,7 @@
 
 ## 端到端加密
 
-所有消息在离设备前经 Fengni 协议加密，传输层使用 AES-256-GCM。全程无明文——即使是 MQTT 代理也只能看到密文。
+所有消息在离设备前经 [Fengni](https://github.com/linkbitflower/fengni-v1) 协议加密。全程无明文——即使是 MQTT 代理也只能看到密文。
 
 ## 防流量分析
 

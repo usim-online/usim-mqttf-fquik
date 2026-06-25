@@ -2,9 +2,7 @@
 
 ## End-to-End Encryption
 
-All message traffic is encrypted end-to-end using the Fengni protocol. The `fengni-mqtt-proxy` performs Fengni handshakes and encrypts/decrypts traffic, but the Android configuration files themselves are protected with AES-256-GCM.
-
-No plaintext messages traverse the network. Even the Mosquitto broker only sees ciphertext.
+All message traffic is encrypted end-to-end using the [Fengni](https://github.com/linkbitflower/fengni-v1) protocol. No plaintext messages traverse the network — even the Mosquitto broker only sees ciphertext.
 
 ## Traffic Analysis Resistance
 

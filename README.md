@@ -74,7 +74,7 @@ The `fengni-mqtt-proxy` sits between clients and a plaintext MQTT broker (e.g. M
 
 ## Security / 安全
 
-- **End-to-end encryption / 端到端加密**: All messages are encrypted via the Fengni protocol before leaving the device. Config files are additionally protected with AES-256-GCM. No plaintext traverses the network at any point.
+- **End-to-end encryption / 端到端加密**: All messages are encrypted via the [Fengni](https://github.com/linkbitflower/fengni-v1) protocol before leaving the device — no plaintext traverses the network at any point. Even the MQTT broker only sees ciphertext.
 - **Traffic analysis resistance / 防流量分析**: `paddingMax` randomizes packet lengths to prevent size-based behavior analysis.
 - **Device identity & isolation / 设备身份与隔离**: Each device is uniquely identified by `deviceId`. Sync groups are isolated by `customerId` — unauthorized devices cannot access group messages.
 - **Key management / 密钥管理**: `fengni.key` resides only on the device's local storage and is never synced or uploaded. Loss of this key makes the configuration unrecoverable.
@@ -135,8 +135,8 @@ The proxy prints its server public key on startup — this is the `serverPubKey`
 
 Deploy two files to the app's external storage directory (`Android/data/<package>/files/fengni/`):
 
-- `fengni.key` — AES-256 key (hex-encoded, 32 bytes) for config decryption
-- `fengni.conf` — AES-256-GCM encrypted config containing `customerId`, `deviceId`, `serverPubKey`, and connection details
+- `fengni.key` — hex-encoded key file for config decryption
+- `fengni.conf` — encrypted config containing `customerId`, `deviceId`, `serverPubKey`, and connection details
 
 Use `fengni-bridge/tools/generate-fengni-deployment.ps1` to generate these files.
 
