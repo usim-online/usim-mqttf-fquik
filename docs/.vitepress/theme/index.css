@@ -1,6 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 :root {
   --vp-c-brand-1: #4fc3f7;
   --vp-c-brand-2: #29b6f6;
   --vp-c-brand-3: #0288d1;
   --vp-c-brand-soft: rgba(79, 195, 247, 0.14);
+  --vp-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ── Hero glow animation ── */
+@keyframes hero-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Home hero ── */
+.VPHero .name {
+  background: linear-gradient(135deg, #4fc3f7, #0288d1, #4fc3f7);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 4s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.VPHero .text {
+  animation: fade-in-up 0.8s ease-out both;
+}
+
+.VPHero .tagline {
+  animation: fade-in-up 0.8s ease-out 0.2s both;
+}
+
+.VPHero .actions {
+  animation: fade-in-up 0.8s ease-out 0.4s both;
+}
+
+/* ── Feature cards with glassmorphism ── */
+.VPFeatures .item {
+  animation: fade-in-up 0.6s ease-out both;
+}
+
+.VPFeatures .item:nth-child(1) { animation-delay: 0.1s; }
+.VPFeatures .item:nth-child(2) { animation-delay: 0.2s; }
+.VPFeatures .item:nth-child(3) { animation-delay: 0.3s; }
+.VPFeatures .item:nth-child(4) { animation-delay: 0.4s; }
+.VPFeatures .item:nth-child(5) { animation-delay: 0.5s; }
+.VPFeatures .item:nth-child(6) { animation-delay: 0.6s; }
+
+.VPFeature {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.VPFeature:hover {
+  background: rgba(79, 195, 247, 0.06);
+  border-color: rgba(79, 195, 247, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(79, 195, 247, 0.08);
+}
+
+/* ── Feature icon animation ── */
+.VPFeature .icon {
+  transition: transform 0.3s ease;
+}
+
+.VPFeature:hover .icon {
+  transform: scale(1.15);
+}
+
+/* ── Nav glassmorphism ── */
+.VPNav {
+  background: rgba(10, 10, 20, 0.8) !important;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+
+/* ── Sidebar glass effect ── */
+.VPSidebar {
+  background: rgba(10, 10, 20, 0.5) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ── Custom home background ── */
+.VPHome {
+  position: relative;
+  overflow: hidden;
+}
+
+.VPHome::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at 30% 20%, rgba(79, 195, 247, 0.08) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 60%, rgba(2, 136, 209, 0.06) 0%, transparent 50%),
+              radial-gradient(ellipse at 50% 80%, rgba(79, 195, 247, 0.04) 0%, transparent 50%);
+  animation: hero-glow 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.VPHome > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Smooth page transitions ── */
+.VPContent {
+  transition: opacity 0.3s ease;
+}
+
+/* ── Code block glass ── */
+.vp-doc div[class*='language-'] {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+}
+
+/* ── Link hover effect ── */
+.vp-doc a {
+  transition: color 0.2s ease;
+}
+
+/* ── Table glass ── */
+.vp-doc table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.vp-doc table tr {
+  background: rgba(255, 255, 255, 0.02);
+  transition: background 0.2s ease;
+}
+
+.vp-doc table tr:hover {
+  background: rgba(79, 195, 247, 0.05);
 }
