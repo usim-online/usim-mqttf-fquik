@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fengni_import_select_both">Select the key file (.key) and the encrypted config file (.conf)</string>
+    <string name="fengni_import_waiting_key">Key file selected — now select the config file (.conf)</string>
+    <string name="fengni_import_waiting_conf">Config file selected — now select the key file (.key)</string>
+    <string name="fengni_import_importing">Both files selected — importing…</string>
+    <string name="fengni_import_select_key">Select key file (.key)</string>
+    <string name="fengni_import_select_conf">Select config file (.conf)</string>
+    <string name="fengni_import_key_selected">✓ Key file selected</string>
+    <string name="fengni_import_conf_selected">✓ Config file selected</string>
+</resources>

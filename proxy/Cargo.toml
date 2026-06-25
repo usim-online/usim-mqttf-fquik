@@ -1,0 +1,29 @@
+[package]
+name = "fengni-mqttf-proxy"
+version = "0.1.0"
+edition = "2021"
+description = "Fengni encrypted MQTT proxy and JNI bridge"
+
+[lib]
+name = "fengni_mqttf_proxy"
+crate-type = ["cdylib"]
+
+[[bin]]
+name = "fengni-mqtt-proxy"
+path = "src/bin/proxy.rs"
+
+[dependencies]
+fengni = { git = "https://github.com/linkbitflower/fengni-v1.git", branch = "master" }
+jni = "0.21"
+hex = "0.4"
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+hmac = "0.12"
+sha2 = "0.10"
+rand = "0.8"
+chrono = "0.4"
+x25519-dalek = { version = "2", features = ["static_secrets", "getrandom"] }
+
+[target.'cfg(target_os = "android")'.dependencies]
+jni = { version = "0.21", features = ["invocation"] }

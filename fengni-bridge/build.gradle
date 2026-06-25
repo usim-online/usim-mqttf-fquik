@@ -1,0 +1,56 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdk 34
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    defaultConfig {
+        minSdk 23
+        targetSdkVersion 33
+    }
+
+    namespace 'dev.octoshrimpy.quik.fengni'
+}
+
+dependencies {
+    // androidx
+    implementation "androidx.appcompat:appcompat:$androidx_appcompat_version"
+    implementation "androidx.core:core-ktx:$androidx_core_version"
+    implementation "androidx.localbroadcastmanager:localbroadcastmanager:1.1.0"
+
+    // dagger
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    // rxjava
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+
+    // timber
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    // fengni HiveMQ AAR — fengni encryption + MQTT 5 client (.so bundled)
+    implementation(name: 'fengni-HiveMQ-release', ext: 'aar')
+    // HiveMQ MQTT 5 client — transitive dep of the AAR
+    api("com.hivemq:hivemq-mqtt-client:1.3.15") {
+        exclude group: 'org.jetbrains', module: 'annotations'
+    }
+
+    implementation project(':data')
+    implementation project(':domain')
+    implementation project(':common')
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}

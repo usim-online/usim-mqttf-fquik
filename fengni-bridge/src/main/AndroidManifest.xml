@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- fengni-bridge: SMS observation via ContentObserver + MQTTF forwarding -->
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application>
+
+        <!-- Boot receiver: re-establish MQTTF connection -->
+        <receiver
+            android:name="com.moez.QKSMS.fengni.FengniBootReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- MQTTF sync service: persistent connection for SMS forwarding -->
+        <service
+            android:name="com.moez.QKSMS.fengni.FengniMqttService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <!-- Config import: file picker for fengni.key + fengni.conf -->
+        <activity
+            android:name="com.moez.QKSMS.fengni.FengniConfigImportActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>
